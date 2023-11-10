@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fetch</title>
+    <style>
+        body {width: 80%; margin: 0 auto;}
+        table {margin: 0 auto;}
+    tr {height: 50px; list-style: none; text-align: center;}
+    tr > th {padding: 10px; margin: 5px; width: 10%; font-size: small;}
+    caption{font-size: large; font-weight: bold;}
+    </style>
+</head>
+<body>
+    <h2>fetch</h2>
+    <table>
+        <caption>날씨</caption>
+        <colgroup>
+            <col style="width: 12%;">
+            <col style="width: 12%;">
+            <col style="width: 12%;">
+            <col style="width: 12%;">
+            <col style="width: 12%;">
+            <col style="width: 12%;">
+            <col style="width: 12%;">
+            <col style="width: 12%;">
+        </colgroup>
+        <tr>
+            <th>timepoint</th><th>cloudcover</th><th>seeing</th><th>transparency</th><th>lifted_index</th><th>rh2m</th><th>temp2m</th><th>prec_type</th>
+        </tr>
+        <tr id="line1"></tr>
+        <tr id="line2"></tr>
+        <tr id="line3"></tr>
+        <tr id="line4"></tr>
+        <tr id="line5"></tr>
+        <tr id="line6"></tr>
+        <tr id="line7"></tr>
+        <tr id="line8"></tr>
+        <tr id="line9"></tr>
+        <tr id="line10"></tr>
+        <tr id="line11"></tr>
+        <tr id="line12"></tr>
+        <tr id="line13"></tr>
+        <tr id="line14"></tr>
+        <tr id="line15"></tr>
+        <tr id="line16"></tr>
+        <tr id="line17"></tr>
+        <tr id="line18"></tr>
+        <tr id="line19"></tr>
+        <tr id="line20"></tr>
+        <tr id="line21"></tr>
+        <tr id="line22"></tr>
+        <tr id="line23"></tr>
+        <tr id="line24"></tr>
+    </table>
+    <script>
+        fetch('https://www.7timer.info/bin/astro.php?lon=113.2&lat=23.1&ac=0&unit=metric&output=json&tzshift=0')    // 비동기로 처리
+        .then((response)=>{
+            return response.json();
+        })
+        .then((data)=>{
+            let datum=data.dataseries;
+            console.log(datum[0])
+            for (let i=0;i<24;i++){
+                const id=document.getElementById(`line${i+1}`);
+                for (let j=0;j<9;j++){
+                    const newNode=document.createElement('tr');
+                    id.innerHTML=`<th>${datum[i]['timepoint']}</th><th>${datum[i]['cloudcover']}</th><th>${datum[i]['seeing']}</th><th>${datum[i]['transparency']}</th><th>${datum[i]['lifted_index']}</th><th>${datum[i]['rh2m']}</th><th>${datum[i]['temp2m']}</th><th>${datum[i]['prex_type']}</th>`};
+            };
+        });
+    </script>
+    
+</body>
+</html>

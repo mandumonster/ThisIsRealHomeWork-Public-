@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <h2>전국 야생동물 구조센터 정보 표준 데이터</h2>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8cf3b793aa4cf3e3a99e8e47ebc79581"></script>
+    <div id="map" style="width:100%;height:500px;"></div>
+    <div>
+        <table>
+            <caption>야생동물 구조센터 위치</caption>
+            <colgroup>
+                <col style="width: 29%;">
+                <col style="width: 69%;">
+            </colgroup>
+            <tr style="text-align: center;">
+                <th>이름</th>
+                <th>위치</th>
+            </tr>
+            <tr id="line1"></tr>
+            <tr id="line2"></tr>
+            <tr id="line3"></tr>
+            <tr id="line4"></tr>
+            <tr id="line5"></tr>
+            <tr id="line6"></tr>
+            <tr id="line7"></tr>
+            <tr id="line8"></tr>
+            <tr id="line9"></tr>
+            <tr id="line10"></tr>
+            <tr id="line11"></tr>
+            <tr id="line12"></tr>
+            <tr id="line13"></tr>
+            <tr id="line14"></tr>
+            <tr id="line15"></tr>
+            <tr id="line16"></tr>
+            <tr id="line17"></tr>
+            <tr id="line18"></tr>
+            <tr id="line19"></tr>
+            <tr id="line20"></tr>
+            <tr id="line21"></tr>
+            <tr id="line22"></tr>
+            <tr id="line23"></tr>
+            <tr id="line24"></tr>
+            <tr id="line25"></tr>
+            <tr id="line26"></tr>
+            <tr id="line27"></tr>
+            <tr id="line28"></tr>
+            <tr id="line29"></tr>
+            <tr id="line30"></tr>
+            <tr id="line31"></tr>
+            <tr id="line32"></tr>
+            <tr id="line33"></tr>
+            <tr id="line34"></tr>
+            <tr id="line35"></tr>
+            <tr id="line36"></tr>
+            <tr id="line37"></tr>
+            <tr id="line38"></tr>
+            <tr id="line39"></tr>
+            <tr id="line40"></tr>
+            <tr id="line41"></tr>
+            <tr id="line42"></tr>
+            <tr id="line43"></tr>
+            <tr id="line44"></tr>
+            <tr id="line45"></tr>
+            <tr id="line46"></tr>
+            <tr id="line47"></tr>
+            <tr id="line48"></tr>
+            <tr id="line49"></tr>
+            <tr id="line50"></tr>
+            <tr id="line51"></tr>
+            <tr id="line52"></tr>
+            <tr id="line53"></tr>
+            <tr id="line54"></tr>
+            <tr id="line55"></tr>
+            <tr id="line56"></tr>
+            <tr id="line57"></tr>
+            <tr id="line58"></tr>
+        </table>
+    </div>
+    <script src="./map.js"></script>
+    <script>
+        fetch('http://api.data.go.kr/openapi/tn_pubr_public_wlres_cnter_api?serviceKey=5IRKQac4f3GgGHDjMuabz6t6RyQcuKsfL1xcrkDk0%2FlO4UpdWQjC44dApGPwJ%2FFSHb5prbmZteVnazF6R%2Fqw6w%3D%3D&pageNo=1&numOfRows=100&type=json')
+        .then((response)=>{
+            return response.json();
+        })
+        .then((data)=>{
+            let datum=data.response.body.items;
+            console.log(datum)
+            for (let i=0;i<58;i++){
+                const id=document.getElementById(`line${i+1}`);
+                for (let j=0;j<58;j++){
+                    const newNode=document.createElement('tr');
+                    id.innerHTML=`<th>${datum[i]['wlresCnterNm']}</th><th>${datum[i]['rdnmadr']}</th>`};
+            };
+        })
+    </script>
+</body>
+</html>
