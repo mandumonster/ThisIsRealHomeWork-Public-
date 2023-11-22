@@ -1,6 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
+import pandas as pd
 
+data=[]
 for i in range(4):
   num=i+1
   header={'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'}
@@ -13,4 +15,8 @@ for i in range(4):
   for i, (t, a) in enumerate(zip(titles, artists)):
     title = t.text.replace('19금\n', '').strip()
     artist = a.text.strip().split('\n')[0]
-    print('{0:3d}위 {1} - {2}'.format((num-1)*50+i+1, artist, title))
+    dic={'순위':(num-1)*50+i+1, '아티스트':artist, '제목':title}
+    data.append(dic)
+
+df=pd.DataFrame(data)
+df.to_excel('geniechart.xlsx') 
